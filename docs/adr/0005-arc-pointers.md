@@ -48,7 +48,7 @@ lifetimes, so that references to structs can be used more widely than currently 
   should be impossible to misuse the generated bindings in a way that triggers
   Rust's "undefined behavior" or otherwise defeats Rust's safety
   characteristics and ownership model (and in particular, avoiding things like
-  use-after-free issues)
+  use-after-free issues).
 
 * We would like to keep the overhead of UniFFI as small as possible so that it
   is a viable solution to more use-cases.
@@ -84,11 +84,11 @@ This decision is taken because:
   generated instead of hand-written.
 
 * Correctly implementing better lifetime management in a thread-safe way is not
-  trivial and subtle errors there would defeat all the safely mechanisms the
+  trivial and subtle errors there would defeat all the safety mechanisms the
   `HandleMap`s offer. Ultimately we'd just end up reimplementing `Arc<>` anyway,
   and the one in the stdlib is far more likely to be correct.
 
-* There are useability and familiarity benefits to using the stdlib `Arc<>` rather
+* There are usability and familiarity benefits to using the stdlib `Arc<>` rather
   than a special-purpose container like `triomphe::Arc`, and the way we currently
   do codegen means we're unlikely to notice any potential performance improvements
   from using a more specialized type.
@@ -159,7 +159,7 @@ We may reconsider this decision if future profiling shows the use of stdlib `Arc
 
 ## Links
 
-* Thom discusses this a but in [this issue](https://github.com/mozilla/uniffi-rs/issues/244)
+* Thom discusses this a bit in [this issue](https://github.com/mozilla/uniffi-rs/issues/244)
   and agrees with the assertion that raw pointer make sense when all
   the relevant code is generated.
 

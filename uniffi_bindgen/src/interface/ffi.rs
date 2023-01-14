@@ -19,7 +19,7 @@
 /// "owned" types (the recipient must free it, or pass it to someone else) and
 /// "borrowed" types (the sender must keep it alive for the duration of the call).
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
-pub enum FFIType {
+pub enum FfiType {
     // N.B. there are no booleans at this layer, since they cause problems for JNA.
     UInt8,
     Int8,
@@ -54,23 +54,23 @@ pub enum FFIType {
 ///
 /// These can't be declared explicitly in the UDL, but rather, are derived automatically
 /// from the high-level interface. Each callable thing in the component API will have a
-/// corresponding `FFIFunction` through which it can be invoked, and UniFFI also provides
-/// some built-in `FFIFunction` helpers for use in the foreign language bindings.
+/// corresponding `FfiFunction` through which it can be invoked, and UniFFI also provides
+/// some built-in `FfiFunction` helpers for use in the foreign language bindings.
 #[derive(Debug, Default, Clone)]
-pub struct FFIFunction {
+pub struct FfiFunction {
     pub(super) name: String,
-    pub(super) arguments: Vec<FFIArgument>,
-    pub(super) return_type: Option<FFIType>,
+    pub(super) arguments: Vec<FfiArgument>,
+    pub(super) return_type: Option<FfiType>,
 }
 
-impl FFIFunction {
+impl FfiFunction {
     pub fn name(&self) -> &str {
         &self.name
     }
-    pub fn arguments(&self) -> Vec<&FFIArgument> {
+    pub fn arguments(&self) -> Vec<&FfiArgument> {
         self.arguments.iter().collect()
     }
-    pub fn return_type(&self) -> Option<&FFIType> {
+    pub fn return_type(&self) -> Option<&FfiType> {
         self.return_type.as_ref()
     }
 }
@@ -79,16 +79,16 @@ impl FFIFunction {
 ///
 /// Each argument has a name and a type.
 #[derive(Debug, Clone)]
-pub struct FFIArgument {
+pub struct FfiArgument {
     pub(super) name: String,
-    pub(super) type_: FFIType,
+    pub(super) type_: FfiType,
 }
 
-impl FFIArgument {
+impl FfiArgument {
     pub fn name(&self) -> &str {
         &self.name
     }
-    pub fn type_(&self) -> FFIType {
+    pub fn type_(&self) -> FfiType {
         self.type_.clone()
     }
 }

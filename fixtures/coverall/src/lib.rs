@@ -133,7 +133,7 @@ type Result<T, E = CoverallError> = std::result::Result<T, E>;
 type ComplexResult<T, E = ComplexError> = std::result::Result<T, E>;
 
 fn println(text: String) -> Result<()> {
-    println!("coveralls println: {}", text);
+    println!("coveralls println: {text}");
     Ok(())
 }
 
@@ -173,7 +173,7 @@ impl Coveralls {
         self.name.clone()
     }
 
-    fn panicing_new(message: String) -> Self {
+    fn panicking_new(message: String) -> Self {
         panic!("{message}");
     }
 

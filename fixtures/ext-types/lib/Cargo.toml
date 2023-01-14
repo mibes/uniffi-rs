@@ -1,7 +1,7 @@
 [package]
 name = "uniffi-fixture-ext-types"
 edition = "2021"
-version = "0.21.0"
+version = "0.22.0"
 authors = ["Firefox Sync Team <sync-team@mozilla.com>"]
 license = "MPL-2.0"
 publish = false
@@ -20,8 +20,7 @@ name = "uniffi_ext_types_lib"
 [dependencies]
 anyhow = "1"
 bytes = "1.0"
-uniffi_macros = {path = "../../../uniffi_macros"}
-uniffi = {path = "../../../uniffi", features=["builtin-bindgen"]}
+uniffi = {path = "../../../uniffi"}
 
 uniffi-fixture-ext-types-lib-one = {path = "../uniffi-one"}
 uniffi-fixture-ext-types-guid = {path = "../guid"}
@@ -32,6 +31,4 @@ uniffi-example-custom-types = {path = "../../../examples/custom-types"}
 url = "2.2"
 
 [build-dependencies]
-uniffi_build = {path = "../../../uniffi_build", features=["builtin-bindgen"]}
-
-
+uniffi = {path = "../../../uniffi"}

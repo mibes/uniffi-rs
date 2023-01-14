@@ -19,7 +19,7 @@ the only question is who manages this thread-safety. Interfaces which are not
 marked as thread-safe cause uniffi to wrap the interface in a mutex which is
 hidden in the generated code and therefore not obvious to the casual reader.
 
-The [Threadsafe] marker acts as a way for the component author to opt out of
+The `[Threadsafe]` marker acts as a way for the component author to opt out of
 the overhead and blocking behaviour of this mutex, at the cost of opting in to
 managing their own locking internally. This ADR proposes that uniffi forces
 component authors to explicitly manage that locking in all cases - or to put
@@ -37,7 +37,7 @@ generic "Threadsafe".
   them `Send+Sync`. We consider this a "foot-gun" as it may lead to accidentally
   having method calls unexpectedly block for long periods, such as
   [this Fenix bug](https://github.com/mozilla-mobile/fenix/issues/17086)
-  (with more details available in [this JIRA ticket](https://jira.mozilla.com/browse/SDK-157).)
+  (with more details available in [this JIRA ticket](https://jira.mozilla.com/browse/SDK-157)).
 
 * Supporting such structs will hinder uniffi growing in directions that we've
   found are desired in practice, such as allowing structs to use [alternative
@@ -63,12 +63,12 @@ Chosen option:
 This decision was taken because our real world experience tells us that
 non-`Send+Sync` interfaces are only useful in toy or example applications (eg,
 the nimbus and autofill projects didn't get very far before needing these
-capabilities), so the extra ongoing work in supporting these interfaces can not
+capabilities), so the extra ongoing work in supporting these interfaces cannot
 be justified.
 
 ### Positive Consequences
 
-* The locking in all uniffi supported component will more easily
+* The locking in all uniffi supported components will be more easily
   discoverable - it will be in hand-written rust code and not hidden inside
   generated code. This is a benefit to the developers of the uniffi supported
   component rather than to the consumers of it; while we are considering other
@@ -94,7 +94,7 @@ be justified.
   https://github.com/mozilla/uniffi-rs/commit/454dfff6aa560dffad980a9258853108a44d5985).
 
 * Existing applications that are yet to consider how to make their
-  implementations `Send+Sync` can not be wrapped until they have.
+  implementations `Send+Sync` cannot be wrapped until they have.
 
 * The examples which aren't currently marked with the `[Threadsafe]` attribute
   will become more complex as they will all need to implement and explain how

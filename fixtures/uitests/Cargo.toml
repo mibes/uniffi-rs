@@ -1,6 +1,6 @@
 [package]
 name = "uniffi_uitests"
-version = "0.21.0"
+version = "0.22.0"
 authors = ["Firefox Sync Team <sync-team@mozilla.com>"]
 edition = "2021"
 license = "MPL-2.0"
@@ -10,8 +10,8 @@ publish = false
 name = "uniffi_uitests"
 
 [dependencies]
-uniffi = {path = "../../uniffi", features=["builtin-bindgen"]}
-uniffi_macros = {path = "../../uniffi_macros", features=["builtin-bindgen"]}
+uniffi = {path = "../../uniffi"}
+uniffi_macros = {path = "../../uniffi_macros"}
 
 [dev-dependencies]
 trybuild = "1.0.53"

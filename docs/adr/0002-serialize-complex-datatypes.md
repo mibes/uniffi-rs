@@ -41,7 +41,7 @@ and expect that we can do so incrementally without changing the consumer-facing 
 ### Option A: Declare complex datatypes using Protocol Buffers, pass them as serialized bytes.
 
 Following the approach currently taken by hand-written component bindings in application-services,
-we could generate a Protocol Buffers schema for each complex data type, and use generated serializtion
+we could generate a Protocol Buffers schema for each complex data type, and use generated serialization
 code to send it across the FFI as a bytebuffer.
 
 * Good, because we're familiar with this approach from our existing components.
@@ -54,7 +54,7 @@ code to send it across the FFI as a bytebuffer.
 * Bad, because Protocol Buffers contain some complexity that isn't useful for our use-case, such
   as affordances for backwards-compatibility.
 
-A similar set of considerations apply to other third-party serialization schems such as flatbuffers,
+A similar set of considerations apply to other third-party serialization schemes such as flatbuffers,
 with the added disadvantage of unfamiliarity.
 
 Ultimately, the additional build complexity of integrating a code-generator inside our own code generator
